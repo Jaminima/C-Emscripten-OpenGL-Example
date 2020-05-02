@@ -155,6 +155,9 @@
   <ItemGroup>
     <Library Include="..\packages\freeglut.2.8.1.15\build\native\lib\v110\Win32\Release\dynamic\freeglut.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Emscripten.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets" Condition="Exists('..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets')" />

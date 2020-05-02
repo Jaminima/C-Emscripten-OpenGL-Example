@@ -1,35 +1,39 @@
 #include <iostream>
 #include <SDL.h>
-#include <GL/glut.h>
+#include <SDL_opengl.h>
+#include "Emscripten.h"
 
-void F() {
+SDL_Window* window;
+
+float offset = 0;
+
+void main_loop() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     glBegin(GL_TRIANGLES);
 
-    glVertex2f(-0.9f, -0.9f);
-    glColor3f(1, 0, 0);
-    glVertex2f(0, 0.9f);
-    glColor3f(0, 1, 0);
-    glVertex2f(0.9f, -0.9f);
-    glColor3f(0, 0, 1);
+    glVertex2f(0.0f, 0.5f+offset);
+    glVertex2f(0.5f, -0.5f+offset);
+    glVertex2f(-0.5f, -0.5f+offset);
+
+    glVertex2f(0.0f, -0.5f - offset);
+    glVertex2f(0.5f, 0.5f - offset);
+    glVertex2f(-0.5f, 0.5f - offset);
 
     glEnd();
 
-    glutSwapBuffers();
+    offset += 0.005f;
+
+    SDL_GL_SwapWindow(window);
 }
 
 int main(int argc, char** argv)
 {
-    glutInit(&argc, argv);
+    SDL_CreateWindowAndRenderer(640, 480, 0, &window, nullptr);
 
-    glutInitDisplayMode(GLUT_SINGLE);
-    glutInitWindowSize(500, 500);
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
-    glutCreateWindow("GLUT Test");
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-    glutDisplayFunc(F);
-
-    glutMainLoop();
+    emscripten_set_main_loop(main_loop, 0, true);
 }
-

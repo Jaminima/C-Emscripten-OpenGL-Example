@@ -25,4 +25,9 @@
   <ItemGroup>
     <Library Include="..\packages\freeglut.2.8.1.15\build\native\lib\v110\Win32\Release\dynamic\freeglut.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Emscripten.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
