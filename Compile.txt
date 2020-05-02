@@ -1,0 +1,1 @@
+emcc ./WebExample/WebExample.cpp -o ./Debug/Out.html -s LEGACY_GL_EMULATION=1
